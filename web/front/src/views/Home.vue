@@ -44,8 +44,6 @@ watch(() => router.currentRoute.value.path, (newValue, oldValue) => {
 </template>
 
 <style scoped>
-@import "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css";
-
 .main {
   width: 100vw;
   margin-top: 20px;
