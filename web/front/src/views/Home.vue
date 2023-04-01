@@ -1,14 +1,24 @@
 <script lang="ts" setup>
-// import ArticleList from '../components/ArticleList.vue';
 import Profile from '../components/Profile.vue';
 import TopBar from '../components/TopBar.vue';
 import Footer from '../components/Footer.vue';
-/**
- * 问题1：切换路由 闪屏.
- */
-// todo: footer component
-//bg:rgb(14, 20, 27) nav:#617bbf fg:#fff #ff7008 
+import { ref, watch } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+const transitionNameIn = ref("");
+const transitionNameOut = ref("");
+const reg = /\/article\/category\/d*/gi;
+const reg2 = /\/article\/details\/d*/gi;
+
+watch(() => router.currentRoute.value.path, (newValue, oldValue) => {
+  if (reg.test(newValue) || newValue === "/") {
+    transitionNameIn.value = "animate__animated animate__fadeInLeft";
+    transitionNameOut.value = "animate__animated animate__fadeInLeft";
+  }
+}, { immediate: true });
 </script>
+
 <template>
   <div>
     <TopBar></TopBar>
@@ -17,11 +27,14 @@ import Footer from '../components/Footer.vue';
         <Profile></Profile>
       </div>
       <div class="right">
-        <router-view :key="$route.path">
+        <router-view :key="$route.path" v-slot="{ Component }">
+          <Transition name="custom-classes" :enter-active-class="transitionNameIn"
+            :leave-active-class="transitionNameOut">
+            <KeepAlive>
+              <component :is="Component" :key="$route.path" />
+            </KeepAlive>
+          </Transition>
         </router-view>
-        <!-- <Transition> -->
-        <!-- <component :is="ArticleList" /> -->
-        <!-- </Transition> -->
       </div>
     </main>
     <footer>
@@ -31,6 +44,8 @@ import Footer from '../components/Footer.vue';
 </template>
 
 <style scoped>
+@import "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css";
+
 .main {
   width: 100vw;
   margin-top: 20px;
@@ -40,13 +55,13 @@ import Footer from '../components/Footer.vue';
   padding: 20px 0px 10px 0px;
 }
 
-/* .v-enter-active,
-.v-leave-active {
-  transition: opacity 0.5s ease;
+/* .fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s ease;
 }
 
-.v-enter-from,
-.v-leave-to {
+.fade-enter-from,
+.fade-leave-to {
   opacity: 0;
 } */
 </style>

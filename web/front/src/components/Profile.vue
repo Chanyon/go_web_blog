@@ -18,7 +18,7 @@ const profile = ref({
   }
 });
 
-const skills = ["JavaScript","TypeScript","HTML","CSS","C/C++","Rust","Go","zig"];
+const skills = ["JavaScript", "TypeScript", "HTML", "CSS", "C/C++", "Rust", "Go", "zig"];
 
 const store = useBackImgStore();
 const { setBackImg } = store;
@@ -34,7 +34,7 @@ onBeforeMount(() => {
 
 </script>
 <template>
-  <div class="profile">
+  <div class="profile animate__animated animate__fadeInLeft">
     <div class="avatar">
       <div class="top">
         <img :src="`http://127.0.0.1:3000${profile.data.avatar}`" alt="" srcset="">
@@ -65,8 +65,8 @@ onBeforeMount(() => {
     </div>
     <div class="skill">
       <h3>Learn program:</h3>
-      <p v-for="(item,idx) in skills" :key="idx">
-        {{idx+1}}.{{item}}
+      <p v-for="(item, idx) in skills" :key="idx">
+        {{ idx + 1 }}.{{ item }}
       </p>
     </div>
   </div>
@@ -144,11 +144,11 @@ onBeforeMount(() => {
   text-align: left;
 }
 
-.skill > h3 {
+.skill>h3 {
   padding-left: 15px;
 }
 
-.skill > p {
+.skill>p {
   padding-left: 15px;
 }
 </style>

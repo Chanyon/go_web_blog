@@ -50,7 +50,7 @@ const imgUrl = "http://127.0.0.1:3000"
 
 </script>
 <template>
-  <div class="search-list">
+  <div class="search-list animate__animated animate__pulse">
     <div class="article-card">
       <div v-for="(item, idx) in articleList.list" :key="idx" class="article-card__item">
         <div class="article-card__image">

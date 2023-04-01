@@ -76,10 +76,10 @@ const pushComment = async () => {
 };
 </script>
 <template>
-  <div class="details">
+  <div class="details animate__animated animate__fadeInLeft">
     <div class="title">
-      <h2>{{articleInfo.title}}</h2>
-      <span>{{formatDate(articleInfo.CreatedAt as string)}}</span>
+      <h2>{{ articleInfo.title }}</h2>
+      <span>{{ formatDate(articleInfo.CreatedAt as string) }}</span>
     </div>
     <div class="article-img">
       <img :src="`http://127.0.0.1:3000${articleInfo.img}`" alt="image">
@@ -89,22 +89,22 @@ const pushComment = async () => {
     <div class="comment">
       <p class="comment-top">
       <h3>回复评论</h3>
-      <span>{{commentList.total}}</span>
+      <span>{{ commentList.total }}</span>
       </p>
       <div class="push-comment">
         <textarea v-model="userComment" rows="8" autofocus></textarea>
         <p>
           <button @click="pushComment">点击评论</button>
-          <span v-if="errorMessage.length > 0" class="error-msg">{{errorMessage}}</span>
+          <span v-if="errorMessage.length > 0" class="error-msg">{{ errorMessage }}</span>
         </p>
       </div>
       <div v-if="commentList.total === 0">
         <span>匿名:</span>
         <span>无评论...</span>
       </div>
-      <div v-for="(comm,idx) in commentList.list" :key="idx">
-        <span>{{comm.user_username}}:</span>
-        <span>{{comm.content}}</span>
+      <div v-for="(comm, idx) in commentList.list" :key="idx">
+        <span>{{ comm.user_username }}:</span>
+        <span>{{ comm.content }}</span>
       </div>
     </div>
   </div>
