@@ -2,7 +2,7 @@
 - Go(gin)
 - vue3(TS)
 
-## by `(https://gitee.com/wejectchan/ginblog)`
+## References `(https://gitee.com/wejectchan/ginblog)`
 ---
 ## Home
 ![alt](./blog.PNG)
